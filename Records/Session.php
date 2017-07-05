@@ -23,11 +23,16 @@ class Session extends AbstractRecord
     private $earnings;
 
     /**
+     * @var Collection
+     */
+    private $works;
+
+    /**
      * Session constructor.
      */
     public function __construct()
     {
-
+        $this->works = new Collection();
     }
 
     /**
@@ -61,6 +66,16 @@ class Session extends AbstractRecord
     }
 
     /**
+     * @param \NumaxLab\Sgae\Records\Work $work
+     * @return Session
+     */
+    public function addWork(Work $work)
+    {
+        $this->works->push($work);
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getFilmsQty()
@@ -82,6 +97,14 @@ class Session extends AbstractRecord
     public function getEarnings()
     {
         return $this->earnings;
+    }
+
+    /**
+     * @return \NumaxLab\Sgae\Records\Collection
+     */
+    public function getWorks()
+    {
+        return $this->works;
     }
 
     /**

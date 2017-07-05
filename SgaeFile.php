@@ -3,6 +3,7 @@
 namespace NumaxLab\Sgae;
 
 use NumaxLab\Sgae\Records\Collection;
+use NumaxLab\Sgae\Records\Session;
 
 class SgaeFile
 {
@@ -11,15 +12,18 @@ class SgaeFile
      */
     private $sessions;
 
-    /**
-     * @var \NumaxLab\Sgae\Records\Collection
-     */
-    private $works;
-
     public function __construct()
     {
         $this->sessions = new Collection();
-        $this->works = new Collection();
+    }
+
+    /**
+     * @param \NumaxLab\Sgae\Records\Session $session
+     * @return SgaeFile
+     */
+    public function addSessions(Session $session) {
+        $this->sessions->push($session);
+        return $this;
     }
 
     /**
@@ -30,21 +34,19 @@ class SgaeFile
         return $this->sessions;
     }
 
-    /**
-     * @return \NumaxLab\Sgae\Records\Collection
-     */
-    public function getWorks()
-    {
-        return $this->works;
-    }
-
     public static function parse($input, $eol = PHP_EOL)
     {
 
     }
 
+    /**
+     * @param string $eol
+     * @return string
+     */
     public function dump($eol = PHP_EOL)
     {
+        $dumper = new Dumper($eol, $this);
 
+        return $dumper->dump();
     }
 }
