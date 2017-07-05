@@ -84,9 +84,19 @@ class Session extends AbstractRecord
         return $this->earnings;
     }
 
+    /**
+     * @return string
+     */
     public function toLine()
     {
-        // TODO: Implement toLine() method.
+        $line = $this->getLineCommonPart();
+        $line .= self::RECORD_TYPE;
+        $line .= str_pad($this->getFilmsQty(), 2, '0', STR_PAD_LEFT);
+        $line .= str_pad($this->getTicketsQty(), 5, '0', STR_PAD_LEFT);
+        $line .= str_pad($this->getEarnings(), 8, '0', STR_PAD_LEFT);
+        $line .= str_pad('', 55, ' ');
+
+        return $line;
     }
 
     public function fromLine($line)

@@ -53,6 +53,17 @@ abstract class AbstractRecord
         return $this->sessionDatetime;
     }
 
+    /**
+     * @return string
+     */
+    protected function getLineCommonPart()
+    {
+        $line = str_pad($this->getPropertyCode(), 6, '0', STR_PAD_LEFT);
+        $line .= $this->getSessionDatetime()->format('YmdHi');
+
+        return $line;
+    }
+
     abstract public function toLine();
 
     abstract public function fromLine($line);
