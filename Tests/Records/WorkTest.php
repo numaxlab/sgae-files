@@ -4,13 +4,13 @@ namespace NumaxLab\Sgae\Tests\Records;
 
 use Carbon\Carbon;
 use NumaxLab\Sgae\Records\AbstractRecord;
-use NumaxLab\Sgae\Records\Session;
+use NumaxLab\Sgae\Records\Work;
 use PHPUnit\Framework\TestCase;
 
-class SessionTest extends TestCase
+class WorkTest extends TestCase
 {
     /**
-     * @var \NumaxLab\Sgae\Records\Session
+     * @var \NumaxLab\Sgae\Records\Work
      */
     protected $sut;
 
@@ -18,7 +18,7 @@ class SessionTest extends TestCase
     {
         parent::setUp();
 
-        $this->sut = new Session();
+        $this->sut = new Work();
     }
 
     protected function tearDown()
@@ -37,9 +37,9 @@ class SessionTest extends TestCase
     {
         $this->sut->setPropertyCode(123456)
             ->setSessionDatetime(Carbon::now())
-            ->setFilmsQty(1)
-            ->setTicketsQty(10)
-            ->setEarnings(154.32);
+            ->setTitle('Test title')
+            ->setVersion(2)
+            ->setLanguage(4);
 
         $line = $this->sut->toLine();
 

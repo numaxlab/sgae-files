@@ -24,7 +24,8 @@ class SgaeFile
      * @param \NumaxLab\Sgae\Records\Session $session
      * @return SgaeFile
      */
-    public function addSession(Session $session) {
+    public function addSession(Session $session)
+    {
         $this->sessions->push($session);
         return $this;
     }
