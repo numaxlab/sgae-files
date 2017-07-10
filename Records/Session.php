@@ -10,11 +10,6 @@ class Session extends AbstractRecord
     /**
      * @var int
      */
-    private $filmsQty;
-
-    /**
-     * @var int
-     */
     private $ticketsQty;
 
     /**
@@ -33,16 +28,6 @@ class Session extends AbstractRecord
     public function __construct()
     {
         $this->works = new Collection();
-    }
-
-    /**
-     * @param int $filmsQty
-     * @return Session
-     */
-    public function setFilmsQty($filmsQty)
-    {
-        $this->filmsQty = $filmsQty;
-        return $this;
     }
 
     /**
@@ -80,7 +65,7 @@ class Session extends AbstractRecord
      */
     public function getFilmsQty()
     {
-        return $this->filmsQty;
+        return $this->works->count();
     }
 
     /**
@@ -104,6 +89,13 @@ class Session extends AbstractRecord
      */
     public function getWorks()
     {
+        foreach ($this->works as $key => $work) {
+            $work->setPropertyCode($this->getPropertyCode())
+                ->setSessionDatetime($this->getSessionDatetime());
+
+            $this->works->put($key, $work);
+        }
+
         return $this->works;
     }
 
