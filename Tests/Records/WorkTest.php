@@ -46,4 +46,18 @@ class WorkTest extends TestCase
         $this->assertInternalType('string', $line);
         $this->assertEquals(89, mb_strlen($line));
     }
+
+    public function testMbString()
+    {
+        $this->sut->setPropertyCode(123456)
+            ->setSessionDatetime(Carbon::now())
+            ->setTitle('Test title áüè')
+            ->setVersion(2)
+            ->setLanguage(4);
+
+        $line = $this->sut->toLine();
+
+        $this->assertInternalType('string', $line);
+        $this->assertEquals(89, mb_strlen($line));
+    }
 }

@@ -3,6 +3,8 @@
 namespace NumaxLab\Sgae\Records;
 
 
+use Stringy\Stringy;
+
 class Session extends AbstractRecord
 {
     const RECORD_TYPE = 1;
@@ -106,10 +108,10 @@ class Session extends AbstractRecord
     {
         $line = $this->getLineCommonPart();
         $line .= self::RECORD_TYPE;
-        $line .= str_pad($this->getFilmsQty(), 2, '0', STR_PAD_LEFT);
-        $line .= str_pad($this->getTicketsQty(), 5, '0', STR_PAD_LEFT);
-        $line .= str_pad($this->getEarnings(), 8, '0', STR_PAD_LEFT);
-        $line .= str_pad('', 55, ' ');
+        $line .= Stringy::create((string) $this->getFilmsQty())->padLeft(2, '0');
+        $line .= Stringy::create((string) $this->getTicketsQty())->padLeft(5, '0');
+        $line .= Stringy::create((string) $this->getEarnings())->padLeft(8, '0');
+        $line .= Stringy::create('')->padRight(55, ' ');
 
         return $line;
     }

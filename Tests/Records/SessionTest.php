@@ -37,7 +37,6 @@ class SessionTest extends TestCase
     {
         $this->sut->setPropertyCode(123456)
             ->setSessionDatetime(Carbon::now())
-            ->setFilmsQty(1)
             ->setTicketsQty(10)
             ->setEarnings(154.32);
 

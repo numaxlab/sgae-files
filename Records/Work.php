@@ -2,6 +2,7 @@
 
 namespace NumaxLab\Sgae\Records;
 
+use Stringy\Stringy;
 
 class Work extends AbstractRecord
 {
@@ -88,10 +89,10 @@ class Work extends AbstractRecord
     {
         $line = $this->getLineCommonPart();
         $line .= self::RECORD_TYPE;
-        $line .= str_pad('', 15, ' ');
-        $line .= str_pad('', 6, '0');
-        $line .= str_pad(substr($this->getTitle(), 0, 40), 40, ' ');
-        $line .= str_pad('', 7, '0');
+        $line .= Stringy::create('')->padRight(15, ' ');
+        $line .= Stringy::create('')->padLeft(6, '0');
+        $line .= Stringy::create($this->getTitle())->substr(0, 40)->padRight(40, ' ');
+        $line .= Stringy::create('')->padLeft(7, '0');
         $line .= $this->getVersion();
         $line .= $this->getLanguage();
 
