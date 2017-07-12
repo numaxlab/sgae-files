@@ -110,7 +110,7 @@ class Session extends AbstractRecord
         $line .= self::RECORD_TYPE;
         $line .= Stringy::create((string) $this->getFilmsQty())->padLeft(2, '0');
         $line .= Stringy::create((string) $this->getTicketsQty())->padLeft(5, '0');
-        $line .= Stringy::create((string) $this->getEarnings())->padLeft(8, '0');
+        $line .= Stringy::create(number_format($this->getEarnings(), 2, '.', ''))->padLeft(8, '0');
         $line .= Stringy::create('')->padRight(55, ' ');
 
         return $line;
